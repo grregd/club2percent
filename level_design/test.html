@@ -1,0 +1,86 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<style>
+td {
+	border: 20px solid;
+	border-color: 00295c;
+	background-color: 0d89af;
+};
+th, td { 
+	padding: 0px;
+	margin: 0px;
+}
+</style>
+
+<script>
+function swap(a, b) {
+    a = $(a); b = $(b);
+    var tmp = $('<span>').hide();
+    a.before(tmp);
+    b.before(a);
+    tmp.replaceWith(b);
+};
+
+function updateSolution() {
+	console.log();
+	$( "#dst" ).html( "" );
+	$( "#solution" ).find( "img" ).each( function(index, element) {
+		$( "#dst" ).html( $("#dst").html() + element.style.position + ",  ") } );
+	}
+
+  $(function() {
+    $("#solution").find( "img" ).each( function( index, element ) { $(element).draggable() } );
+
+    $( "#solution td" ).droppable({
+	drop: function( event, ui ) {
+//		if ( $(this) === ui ) return;
+		console.log( "this: " + $(this).html() + ",  ui: " + ui.draggable.html() );
+//		swap( $(this), ui );
+		updateSolution();
+	}
+   });
+ });
+</script>
+
+</head>
+
+<body>
+<div width="100px">
+<table border="0" >
+	<tr border="0">
+		<td>
+			<table border="0">
+				<tr>
+					<td colspan="5"><img src="DSC_0716.jpg" width="600px"/>
+				</tr>
+			</table>
+		</td>
+		<td>
+			<table border="0" id="solution">
+				<tr>
+					<td><img id="draggable" src="_c.png" width="100px"/></td>
+					<td><img id="draggable" src="_cz.png" width="100px"/></td>
+					<td><img id="draggable" src="_g.png" width="100px"/></td>
+					<td><img id="draggable" src="_b.png" width="100px"/></td>
+					<td><img id="draggable" src="_y.png" width="100px"/></td>
+				</tr>
+				<tr>
+					<td><img id="draggable" src="_f.png" width="100px"/></td>
+					<td><img id="draggable" src="_p.png" width="100px"/></td>
+					<td><img id="draggable" src="_r.png" width="100px"/></td>
+					<td><img id="draggable" src="_w.png" width="100px"/></td>
+					<td><img id="draggable" src="_z.png" width="100px"/></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</div>
+<div id="dst"><p></p></div>
+</body>
+</html>
