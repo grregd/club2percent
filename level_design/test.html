@@ -1,13 +1,14 @@
 <html>
 
 <head>
+  <meta charset="utf-8"/>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <style>
 td {
-	border: 20px solid;
+	border: 8px solid;
 	border-color: 00295c;
 	background-color: 0d89af;
 };
@@ -27,60 +28,106 @@ function swap(a, b) {
 };
 
 function updateSolution() {
-	console.log();
+	console.log("sfsdfsdf");
 	$( "#dst" ).html( "" );
 	$( "#solution" ).find( "img" ).each( function(index, element) {
-		$( "#dst" ).html( $("#dst").html() + element.style.position + ",  ") } );
+		//$( "#dst" ).html( $("#dst").html() + element.style.position + ",  ") 
+		console.log( element.name );
+		$("#dst").html( $("#dst").html() + ' ' + element.name );
+	} );
 	}
 
   $(function() {
-    $("#solution").find( "img" ).each( function( index, element ) { $(element).draggable() } );
+	updateSolution();
+//    $("#solution").find( "img" ).each( function( index, element ) { $(element).draggable() } );
+	$("#solution").children('tbody').children('tr').sortable({
+		helper: "clone",
+		revert: true,
+		update: function( event, ui ) {
+			updateSolution();
+		}
+	});
 
-    $( "#solution td" ).droppable({
-	drop: function( event, ui ) {
+//    $( "#solution td" ).droppable({
+//	drop: function( event, ui ) {
 //		if ( $(this) === ui ) return;
-		console.log( "this: " + $(this).html() + ",  ui: " + ui.draggable.html() );
+//		console.log( "this: " + $(this).html() + ",  ui: " + ui.draggable.html() );
 //		swap( $(this), ui );
-		updateSolution();
-	}
-   });
+//		updateSolution();
+//	}
+//   });
  });
+
+function querySelected() {
+	$("#queryImg").attr( 'src', "../../club2percent-katy/" + $("#querySelect").val() + ".jpg" );
+	console.log( $("#queryImg").attr('src') );
+}
 </script>
 
 </head>
 
 <body>
+<select onchange="querySelected()" id="querySelect">
+	<option value="DSC_0754" selected>DSC_0754
+	<option value="DSC_0755">DSC_0755
+	<option value="DSC_0756">DSC_0756
+	<option value="DSC_0757">DSC_0757
+	<option value="DSC_0758">DSC_0758
+	<option value="DSC_0759">DSC_0759
+	<option value="DSC_0760">DSC_0760
+	<option value="DSC_0761">DSC_0761
+	<option value="DSC_0762">DSC_0762
+	<option value="DSC_0763">DSC_0763
+	<option value="DSC_0764">DSC_0764
+	<option value="DSC_0765">DSC_0765
+	<option value="DSC_0766">DSC_0766
+	<option value="DSC_0767">DSC_0767
+	<option value="DSC_0768">DSC_0768
+	<option value="DSC_0769">DSC_0769
+	<option value="DSC_0770">DSC_0770
+	<option value="DSC_0771">DSC_0771
+	<option value="DSC_0772">DSC_0772
+	<option value="DSC_0773">DSC_0773
+	<option value="DSC_0774">DSC_0774
+	<option value="DSC_0775">DSC_0775
+	<option value="DSC_0776">DSC_0776
+	<option value="DSC_0777">DSC_0777
+	<option value="DSC_0778">DSC_0778
+	<option value="DSC_0779">DSC_0779
+	<option value="DSC_0780">DSC_0780
+</select>
 <div width="100px">
 <table border="0" >
 	<tr border="0">
 		<td>
 			<table border="0">
-				<tr>
-					<td colspan="5"><img src="DSC_0716.jpg" width="600px"/>
-				</tr>
 			</table>
 		</td>
 		<td>
 			<table border="0" id="solution">
 				<tr>
-					<td><img id="draggable" src="_c.png" width="100px"/></td>
-					<td><img id="draggable" src="_cz.png" width="100px"/></td>
-					<td><img id="draggable" src="_g.png" width="100px"/></td>
-					<td><img id="draggable" src="_b.png" width="100px"/></td>
-					<td><img id="draggable" src="_y.png" width="100px"/></td>
+					<td><img id="draggable" name="c" src="_c.png" width="100px"/></td>
+					<td><img id="draggable" name="cz" src="_cz.png" width="100px"/></td>
+					<td><img id="draggable" name="g" src="_g.png" width="100px"/></td>
+					<td><img id="draggable" name="b" src="_b.png" width="100px"/></td>
+					<td><img id="draggable" name="y" src="_y.png" width="100px"/></td>
 				</tr>
 				<tr>
-					<td><img id="draggable" src="_f.png" width="100px"/></td>
-					<td><img id="draggable" src="_p.png" width="100px"/></td>
-					<td><img id="draggable" src="_r.png" width="100px"/></td>
-					<td><img id="draggable" src="_w.png" width="100px"/></td>
-					<td><img id="draggable" src="_z.png" width="100px"/></td>
+					<td colspan="5"><img id="queryImg" src="DSC_0716.jpg" width="700px"/>
+				</tr>
+				<tr>
+					<td><img id="draggable" name="f" src="_f.png" width="100px"/></td>
+					<td><img id="draggable" name="p" src="_p.png" width="100px"/></td>
+					<td><img id="draggable" name="r" src="_r.png" width="100px"/></td>
+					<td><img id="draggable" name="w" src="_w.png" width="100px"/></td>
+					<td><img id="draggable" name="z" src="_z.png" width="100px"/></td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 </table>
 </div>
-<div id="dst"><p></p></div>
+<div>
+	<span id="number"></span> <span id="dst"></span></div>
 </body>
 </html>
