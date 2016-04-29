@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="quizdb.js"></script>
 
 <style>
 td {
@@ -28,11 +29,11 @@ function swap(a, b) {
 };
 
 function updateSolution() {
-	console.log("sfsdfsdf");
+    console.log( "quizData: " + quizData );
 	$( "#dst" ).html( "" );
 	$( "#solution" ).find( "img" ).each( function(index, element) {
 		//$( "#dst" ).html( $("#dst").html() + element.style.position + ",  ") 
-		console.log( element.name );
+	//	console.log( element.name );
 		$("#dst").html( $("#dst").html() + ' ' + element.name );
 	} );
 	}
@@ -60,7 +61,7 @@ function updateSolution() {
 
 function querySelected() {
 	$("#queryImg").attr( 'src', "../../club2percent-katy/" + $("#querySelect").val() + ".jpg" );
-	console.log( $("#queryImg").attr('src') );
+	//console.log( $("#queryImg").attr('src') );
 }
 </script>
 
@@ -68,7 +69,7 @@ function querySelected() {
 
 <body>
 <select onchange="querySelected()" id="querySelect">
-	<option value="DSC_0754" selected>DSC_0754
+	<option value="DSC_0754">DSC_0754
 	<option value="DSC_0755">DSC_0755
 	<option value="DSC_0756">DSC_0756
 	<option value="DSC_0757">DSC_0757

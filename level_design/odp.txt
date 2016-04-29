@@ -1,25 +1,25 @@
 c-czerwony 
 cz-ciemny zielony
 g-granatowy
-b-bia³y
-y-¿ó³ty
+b-biaÅ‚y
+y-Å¼Ã³Å‚ty
 f-fioletowy
-p-pomarañcz
-r-ró¿owy
-w -br¹zowy
+p-pomaraÅ„cz
+r-rÃ³Å¼owy
+w -brÄ…zowy
 z-zielony
 
 78: c cz g b y f p r w z
 
 61: g c y b cz r f p z w
 
-82: c b g cz y f p w r z 
+82: c b g cz y f p w r z
 
-55: cz c b y g r p w z f 
+55: cz c b y g r p w z f
 
 52: b c g cz y p w r f z
 
-62: g y c b cz f z r p w  
+62: g y c b cz f z r p w
 
 69: g cz c b y f z w r p
 
