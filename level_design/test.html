@@ -20,6 +20,8 @@ th, td {
 </style>
 
 <script>
+var currentAnswer = 0;
+
 function swap(a, b) {
     a = $(a); b = $(b);
     var tmp = $('<span>').hide();
@@ -29,15 +31,24 @@ function swap(a, b) {
 };
 
 function updateSolution() {
-    console.log( "quizData: " + quizData );
-	$( "#dst" ).html( "" );
+	console.log( "quizData: " + quizData );
+	
+	if (currentAnswer == 0)
+		return ;
+
+	answer = currentAnswer.answer;
+	oks = 0;
+	index = 0;
 	$( "#solution" ).find( "img" ).each( function(index, element) {
-		//$( "#dst" ).html( $("#dst").html() + element.style.position + ",  ") 
-	//	console.log( element.name );
-		if (element.name != "") 
-			$("#dst").html( $("#dst").html() + ' "' + element.name + '", ' );
-	} );
-	}
+		if (answer[index] == element.name)
+			++oks;
+		} );
+
+	if (oks == 8)
+		$( "#dst" ).html( "OK" );
+	else
+		$( "#dst" ).html( oks );
+}
 
   $(function() {
 	updateSolution();
@@ -62,19 +73,17 @@ function updateSolution() {
 
 function querySelected() {
 	$("#queryImg").attr( 'src', "../images/" + $("#querySelect").val() + ".jpg" );
+	$("#queryImg").attr( 'name', $("#querySelect").val());
+	key = $("#querySelect").val().slice(0, -1);
+	currentAnswer = quizData[key];
 	//console.log( $("#queryImg").attr('src') );
 }
 
 function onLoad() {
-	var qs = new Map();
-	quizData.forEach(element => {
-		qs[element.num] = 1;
+	$.each( quizData, function( key, element ) {
+		opt = new Option(element.num, element.num + "q");
+		$("#querySelect").append(opt);
 	});
-	for (i = 1; i < 100; ++i)
-	{
-		if (qs[i] != 1)
-			$("#querySelect").append(new Option(((i<10)?"0":"") + i + "q", ((i<10)?"0":"") + i + "q"));
-	}
 }
 </script>
 
@@ -100,14 +109,14 @@ function onLoad() {
 					<td><img id="draggable" name="y" src="_y.png" width="100px"/></td>
 				</tr>
 				<tr>
-					<td colspan="5"><img id="queryImg" src="DSC_0716.jpg" height="500px"/>
-				</tr>
-				<tr>
 					<td><img id="draggable" name="f" src="_f.png" width="100px"/></td>
 					<td><img id="draggable" name="p" src="_p.png" width="100px"/></td>
 					<td><img id="draggable" name="r" src="_r.png" width="100px"/></td>
 					<td><img id="draggable" name="w" src="_w.png" width="100px"/></td>
 					<td><img id="draggable" name="z" src="_z.png" width="100px"/></td>
+				</tr>
+				<tr>
+					<td colspan="5"><img id="queryImg" height="500px"/>
 				</tr>
 			</table>
 		</td>
