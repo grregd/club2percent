@@ -34,7 +34,8 @@ function updateSolution() {
 	$( "#solution" ).find( "img" ).each( function(index, element) {
 		//$( "#dst" ).html( $("#dst").html() + element.style.position + ",  ") 
 	//	console.log( element.name );
-		$("#dst").html( $("#dst").html() + ' ' + element.name );
+		if (element.name != "") 
+			$("#dst").html( $("#dst").html() + ' "' + element.name + '", ' );
 	} );
 	}
 
@@ -60,42 +61,27 @@ function updateSolution() {
  });
 
 function querySelected() {
-	$("#queryImg").attr( 'src', "../../club2percent-katy/" + $("#querySelect").val() + ".jpg" );
+	$("#queryImg").attr( 'src', "../images/" + $("#querySelect").val() + ".jpg" );
 	//console.log( $("#queryImg").attr('src') );
+}
+
+function onLoad() {
+	var qs = new Map();
+	quizData.forEach(element => {
+		qs[element.num] = 1;
+	});
+	for (i = 1; i < 100; ++i)
+	{
+		if (qs[i] != 1)
+			$("#querySelect").append(new Option(((i<10)?"0":"") + i + "q", ((i<10)?"0":"") + i + "q"));
+	}
 }
 </script>
 
 </head>
 
-<body>
+<body onload="onLoad()">
 <select onchange="querySelected()" id="querySelect">
-	<option value="DSC_0754">DSC_0754
-	<option value="DSC_0755">DSC_0755
-	<option value="DSC_0756">DSC_0756
-	<option value="DSC_0757">DSC_0757
-	<option value="DSC_0758">DSC_0758
-	<option value="DSC_0759">DSC_0759
-	<option value="DSC_0760">DSC_0760
-	<option value="DSC_0761">DSC_0761
-	<option value="DSC_0762">DSC_0762
-	<option value="DSC_0763">DSC_0763
-	<option value="DSC_0764">DSC_0764
-	<option value="DSC_0765">DSC_0765
-	<option value="DSC_0766">DSC_0766
-	<option value="DSC_0767">DSC_0767
-	<option value="DSC_0768">DSC_0768
-	<option value="DSC_0769">DSC_0769
-	<option value="DSC_0770">DSC_0770
-	<option value="DSC_0771">DSC_0771
-	<option value="DSC_0772">DSC_0772
-	<option value="DSC_0773">DSC_0773
-	<option value="DSC_0774">DSC_0774
-	<option value="DSC_0775">DSC_0775
-	<option value="DSC_0776">DSC_0776
-	<option value="DSC_0777">DSC_0777
-	<option value="DSC_0778">DSC_0778
-	<option value="DSC_0779">DSC_0779
-	<option value="DSC_0780">DSC_0780
 </select>
 <div width="100px">
 <table border="0" >
@@ -114,7 +100,7 @@ function querySelected() {
 					<td><img id="draggable" name="y" src="_y.png" width="100px"/></td>
 				</tr>
 				<tr>
-					<td colspan="5"><img id="queryImg" src="DSC_0716.jpg" width="700px"/>
+					<td colspan="5"><img id="queryImg" src="DSC_0716.jpg" height="500px"/>
 				</tr>
 				<tr>
 					<td><img id="draggable" name="f" src="_f.png" width="100px"/></td>
